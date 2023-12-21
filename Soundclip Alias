@@ -1,0 +1,29 @@
+This is where I will enter the code to activate an audio file with just one press of a button from within linux terminal
+
+
+1. Download sound clip, and install ffmpeg and aplay on your linux OS via: 
+sudo apt install ffmpeg
+sudo apt install alsa-utils
+
+2. Go to Downloads folder, change file (.mp4 doesn't work well with aplay) to .wav format via:
+ffmpeg -i inputsound.mp4 soundclip.wav
+
+3. Create Directory for Soundclips, cd into it, & create bash script: nano SOUND.sh
+#!/bin/bash
+
+zound='/home/Downloads/soundclip.wav'      ###Might need to check the path of the file, via: realpath soundclip.wav 
+
+if [ -f "$zound" ]; then
+        aplay "$zound"
+else
+        echo 'an erie silence $zound'
+fi
+
+
+4. Save and Exit
+
+5. chmod +x SOUND.sh
+
+6. Open ~/.bashrc file in text editor, scroll to the bottom, & create a Path to assign a Soundclip Alias, via:
+nano ~/.bashrc
+alias q='/home/soundalias/SOUND.sh' 
