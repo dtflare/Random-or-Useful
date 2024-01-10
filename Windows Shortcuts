@@ -1,0 +1,15 @@
+Below is the process for creating a shortcut (hotkeys) via your Windows Desktop.
+The below workflow will enable a hotkey to shutdown your machine.
+
+Right click on Desktop, select:
+'New'>'Shortcut'
+
+In the location field type:
+shutdown.exe /s /t 0         ### /s is shutdown, /t 0 sets delay to zero seconds
+
+Hit Next & give your Shortcut a name.
+
+Now go to the new icon on your desktop, right click and go to Properties >> Shortcut, to set shortcut key:
+CTRL ALT M
+
+In that same section you can also change the Icon from a small list of images.
