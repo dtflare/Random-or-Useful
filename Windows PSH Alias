@@ -1,0 +1,12 @@
+Below is a short guide on creating Aliases and Desktop Shortcuts in Windows - To Shutdown, Lock, and pull up PowerShell.
+
+First ensure you have a $PROFILE file via PowerShell setup to run variables when you first launch  your computer:
+
+New-Item -Type File -Force $PROFILE
+
+Then open the file in notepad with:
+notepad $PROFILE
+
+Enter any desired aliases, here we will be creating one to shutdown your computer.
+
+New-Alias -Name shutdown -Value Stop-Computer
