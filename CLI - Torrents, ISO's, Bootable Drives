@@ -1,0 +1,35 @@
+Below is a step by step process to create a bootable drive from the command line.
+We begin by wget'ing the torrent
+Installing Transmission
+Downloading the ISO
+Enumerating Drive Path + ISO file path
+Finally we use dd to format a Live Bootable Flash Drive
+
+*The MOST Random-or-Useful Command of this Guide: 
+ls -dt $PWD/* | tac   
+###This command will list all your files from oldest at the top to newest at the bottom WITH their full paths included
+##This command utilizes ls (list) with the -dt command (d lists directories, not contents) (t orders files by newest at the top, oldest at bottom) $PWD = an environment variable representing 'print working directory', 
+#when combined with the wildcard operator * it expands and lists the full path of each file, then | (stdin | stdout) feeds those commands into tac which simply reverses their order, and bam!
+####To see how to turn this into an environment variable, capable of listing directory contents from oldest to newest from ANY directory, see file > 'LS Magic'
+
+Linux Directions
+1. Right Click on Torrent file, 'Copy Link'
+2. In Terminal: cd into desired folder > wget [paste link here link]   ##you have now downloaded the torrent, which will point you in the direction towards your ISO
+4. Check if Transmission - a Torrent Client - is installed. 
+  - If not installed: sudo apt-get install transmission-cli
+5. List files with full path + newest at bottom via: 
+  ls -dt $PWD/* | tac    
+6. Run Torrent Client via: 
+  transmission-cli [paste torrent file here]               ## you have now downloaded the iso via the torrent
+7. Plug in flashdrive. Enumerate path via: 
+  lsblk
+8. Unmount Flash Drive: 
+  umount /dev/sdb                      #Ensure you are unmounting the correct drive, otherwise conflicting block writing processes will corrupt your install
+9. Enumerate File Path while inside same directory via: 
+  ls -dt $PWD/* | tac     < OR >     realpath [paste iso file here]
+10. Create the Live Bootable via: 
+  sudo dd bs=4M if=/path/to/file.iso of=/dev/sdb status=progress oflag=sync    #Change File Path / drive path (dev/sdb) as needed
+11. Run sync command: 
+  sync
+12. Run eject command: 
+  sudo eject /dev/sdb
