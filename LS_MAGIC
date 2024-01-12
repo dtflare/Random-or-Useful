@@ -1,0 +1,34 @@
+Follow the steps below to setup << ls -dt $PWD/* | tac >> as an Environment variable.
+    - Enables a list with full paths of all files in current or requested directory - in descending order!
+
+Why? - Often it's the most recently modified / saved file that we're after in the Command Line, this conveniently lists that file right above your text prompt in a Linux Terminal.
+
+1. Create a bash script with nano
+nano LS_MAGIC
+
+2. Copy / Paste the following:
+#!/bin/bash
+
+# Set directory to the first argument, or to the current directory if no argument is given
+directory="${1:-$PWD}"
+
+# List files in the specified (or current) directory in reverse order with full paths
+ls -dt "$directory"/* | tac
+
+3. Save & Exit then add executable priviledge
+CTRL X
+
+chmod +x LS_MAGIC
+
+4. Add to path
+
+mv ./LS_MAGIC /usr/bin/LS_MAGIC
+
+5. Test! 
+
+While in your Downloads folder try: LS_MAGIC
+
+While in your Downloads folder list home directory contents: LS_MAGIC ~
+
+
+Bam!
