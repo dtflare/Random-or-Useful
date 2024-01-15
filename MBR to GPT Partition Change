@@ -1,3 +1,52 @@
 This is a walkthrough on turning an active Linux device into a Windows OS.
 Irrelevant if a CMOS reset can be applied, and/or total wipe / fresh hardware components.
 Otherwise, for devices which may be designed for Linux / have Linux already installed with an MBR partition scheme, this shows the steps to get from A to B.
+
+
+The Most Random-or-Useful tidbit: Tiny11: a 'bloat-free' fully operational Windows OS, developed by NETDEV, runs on only 3.6GB. Try it out!
+
+1. Open terminal on you rlinux device, and install gdisk
+sudo apt install gdisk
+
+2.Enumerate your drives and locate the correct name, look for ssd storage (likely the largest one)
+lsblk
+
+3. Run, replace 'sda1' w/ the main drive (will represent your ssd storage in lsblk output
+sudo gdisk /dev/sda1
+
+4. Once in gdisk follow the below steps to convert from MBR to GPT. <Enter> = Press Enter Key.
+r <Enter>
+w <Enter>
+
+5. Check if it was successful
+sudo gdisk -l /dev/sda1
+
+6. If it says 'GPT: Damaged' follow steps 7-8
+  - Can also check via:
+    sudo fdisk -l /dev/sda1
+  - Also with: (if it says ext 4 = MBR partition, if vfat = GPT)
+
+7. Run gdisk again:
+sudo gdisk /dev/sda1
+
+8. Follow below steps
+r <Enter>
+v <Enter>
+e <Enter>
+b <Enter>
+c <Enter>
+w <Enter>
+q <Enter>
+
+9. Shutdown device, and install Live Bootable, in this case we are using Tiny11, 3.6GB Windows OS by NETDEV, built w/ as little bloatware as possible.
+
+10. Once you Enter in language, and hit the checkmark to Accept some T&C's you will be brought to a page with your partitions.
+
+11. Select /dev/sda1 (whichever partition you were working on)
+Press Delete
+Press New
+
+12. Now you will be able to Press Next, and have a successful install.
+- Notice the Partition Scheme Changes to MSR (Microsoft Reserved Partition), but without first changing it with this method from MBR to GPT this would not be possible.
+
+Bam!
