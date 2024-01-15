@@ -9,23 +9,24 @@ nano LS_MAGIC
 2. Copy / Paste the following:
 #!/bin/bash
 
-# Set directory to the first argument, or to the current directory if no argument is given
-directory="${1:-$PWD}"
+# Set directory to the first argument, or to the current directory if no argument is given.
+# Use realpath to get full path of directory
+directory=$(realpath "${1:-$PWD}")
 
 # List files in the specified (or current) directory in reverse order with full paths
 ls -dt "$directory"/* | tac
 
 3. Save & Exit then add executable priviledge
-CTRL X
+CTRL X 
+ENTER
 
 chmod +x LS_MAGIC
 
 4. Add to path
-
 mv ./LS_MAGIC /usr/bin/LS_MAGIC
 
-5. Test! 
 
+5. Test! 
 While in your Downloads folder try: LS_MAGIC
 
 While in your Downloads folder list home directory contents: LS_MAGIC ~
