@@ -33,3 +33,8 @@ Linux Directions
   sync
 12. Run eject command: 
   sudo eject /dev/sdb
+
+
+Software to create Live Bootable Windows USB's on a Linux OS:
+WoeUSB
+Ventoy
