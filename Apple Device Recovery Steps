@@ -1,1 +1,28 @@
-Below will be the steps for a fresh install on an Apple Device locked with Guided Access
+Below are the steps for a fresh install on an Apple Device locked with Guided Access.
+
+*Ipad Edition*
+
+Fairly simple steps, can be difficult to find a straight answer online.
+
+1. Charge your Ipad.
+
+2. Download Itunes on your (MAC or Winndows) computer, no need to log in or create an account.
+- Itunes her is basically an interface to facilitate the device's connection to Apple's servers for the restoration process.
+
+3.Next we will enter DFU (Device Firmware Update) Mode, this is a more intensive restore than standard recovery mode.
+  *Note steps vary slightly depending on your device Hardware (home button, etc.)
+
+4. With Itunes running, turn off Ipad and plug into computer.
+
+5. Enter DFU: Press and hold Power Button for 3 seconds
+  - Before releasing Power Button, press and hold Home Button for 10 seconds, then release Power Button
+
+6. Continue to hold Home Button until Itunes detects Ipad in Recovery Mode
+
+7. In Itunes a Restore Button should pop up, press it, and let it do its magic.
+
+(May take a couple of tries, if so: Restart Ipad and hold power / home buttons for the prescribed times above)
+
+Bam!
+
+
