@@ -1,0 +1,3 @@
+This is a walkthrough on turning an active Linux device into a Windows OS.
+Irrelevant if a CMOS reset can be applied, and/or total wipe / fresh hardware components.
+Otherwise, for devices which may be designed for Linux / have Linux already installed with an MBR partition scheme, this shows the steps to get from A to B.
