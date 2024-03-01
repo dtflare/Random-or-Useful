@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#can use below as small script + direction to add github ssh connection in linux terminal - good for testing private repos.
+eval "$(ssh-agent -s)"; ssh-add ~/.ssh/id_ed25519
+
+#Check if your connection is established
+# ssh -T git@github.com
+
+
+# git clone git@github.com:dtflare/parsR.git
+
+# conda activate <> (5miniconda name for your env to test tool)
+
+#cd into root directory containing setup.py:
+# pip install -e .
