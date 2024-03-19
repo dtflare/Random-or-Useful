@@ -2,9 +2,9 @@
 
 #We are going to be using Llamafile by Justinne Tunney 
 
-# First we want to create a custom folder and add it to path
+# First we want to create a custom folder and add it to $PATH
 # Navigate to an area of your choice and use mkdir
-cd usr/sbin
+cd /usr/sbin
 mkdir llm
 nano ~/.bashrc 
 export PATH="usr/sbin/llm:$PATH"
@@ -15,26 +15,31 @@ curl -L -o llamafile.exe https://github.com/Mozilla-Ocho/llamafile/releases/down
 
 chmod +x llamafile.exe
 
+# Then we want to coppy or move that file into our custom folder in $PATH
+cp llamafile.exe /usr/sbin/llm/llamafile.exe
+
 # Next you want to install huggingface-hub
 pip3 install huggingface-hub
 
 
-# Next install weights via huggingface, we are going to try phi-2 via TheBloke
+# Next install weights via huggingface, we are going to try phi-2 via TheBloke - stick to 7B models to start, beware of your computer's resources.
 huggingface-cli download TheBloke/phi-2-GGUF phi-2.Q4_K_M.gguf --local-dir . --local-dir-use-symlinks False
 
-# Now that the weights are downloaded, lets create a short script
+# Now that the weights are downloaded, lets create a short script:
 nano phi-2
 #!/bin/bash
-./llamafile.exe -m phi-2.Q4_K_M.gguf
+llamafile.exe -m phi-2.Q4_K_M.gguf
 
 # Save and Exit
 chmod +x phi-2
-# Move to directory in Path
-mv ./phi-2 /usr/sbin/llm/phi-2
 
-# To launch the model just type:
+# Move to directory in $PATH
+mv phi-2 /usr/sbin/llm/phi-2
+
+# Now since we have llamafile.exe and the phi-2 script both in our folder in $PATH, to launch the model just type:
 phi-2
 
+# This will spin a locally hosted gradio server running 100% off of your CPU.
 
 
 
