@@ -2,7 +2,8 @@
 A suite of scripts, tools, and configs that are both random and useful
 
 # Setup
-Each file is unrelated to the next, this is more of a hub for things I've learned along the way which I think can be useful to the community
+- These are not meant to be installed as a single tool or package, instead each file is it's own, standalone guide.
+- The guides in this repo are focused on Cybesecurity & AI.
 # Examples:
 - **Local_LLMS** shows you how to run an opensource Language Model directly on your CPU from the command line which will launch a local gradio server.
 - **LS_MAGIC** shows how to create an enhanced version of the bash command 'ls' in which you can list the full path of your files from newest to oldest.
