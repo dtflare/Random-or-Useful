@@ -1,7 +1,16 @@
-#!/bin/bash
+#create and add an ssh key to your ~/.ssh file
+ssh-keygen -t ed25519 -C "email@gmail.com"
 
-#can use below as small script + direction to add github ssh connection in linux terminal - good for testing private repos.
+#After you press enter you'll see: "Enter a file in which to save the key," and just press enter again.
+#option passphrase - recommended.
+
+
+#Add github ssh connection to SSH client in your linux terminal - good for testing private repos and general access.
 eval "$(ssh-agent -s)"; ssh-add ~/.ssh/id_ed25519
+
+#then copy your ssh key and add into your GitHub profile
+cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard
+
 
 #Check if your connection is established
 # ssh -T git@github.com
