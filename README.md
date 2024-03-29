@@ -13,7 +13,7 @@ A suite of scripts, tools, and configs that are both random and useful
 
 
 # Contributions
-We welcome contributions from anyone who wants to help improve this project! There are many ways to contribute, including:
+I welcome contributions from anyone who wants to help improve this project! There are many ways to contribute, including:
 
     Reporting issues or suggesting new features
     Fixing bugs or implementing enhancements
@@ -21,7 +21,7 @@ We welcome contributions from anyone who wants to help improve this project! The
     Reviewing code and providing feedback
     Sharing ideas and insights on our community channels
 
-We appreciate all contributions, big or small. If you're new to open source or need help getting started, please don't hesitate to reach out for guidance.
+I appreciate all contributions, big or small. If you're new to open source or need help getting started, please don't hesitate to reach out for guidance.
 
 How to Contribute
 
