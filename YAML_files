@@ -1,0 +1,33 @@
+Miniconda YAML File / Environment Management in Linux
+
+Export Directions:
+- Activate Conda Env:
+$ conda activate myenv
+
+- Choose one of the two options below:
+  1. Export the Conda Env with exact dependencies / version control
+   $ conda env export > environment.yml
+OR
+  2. Export Conda Env as a general build without strict dependencies
+   $ conda env export --no-builds > environment.yml
+
+- If you want to change the environment name or dependencies, directly edit the file:
+  $ nano environment.yml
+    - Example of what it will look like:
+      name: myenv
+    channels:
+      - defaults
+    dependencies:
+      - python=3.8
+      - numpy
+      - pandas
+      - pip:
+        - SomePipPackage==1.0.5
+
+
+
+Import Directions:
+- After you have exported a YAML file, navigate to the directory where you placed it.
+  $ conda env create -f environment.yml
+- Activate it to use:
+$ conda activate environment_name
