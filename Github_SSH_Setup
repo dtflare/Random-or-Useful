@@ -31,3 +31,10 @@ Create or Activate Minconda for version control
 
 cd into root file of repo that contains setup.py:
 pip install -e .
+
+
+NEW REPO SETUP
+$ git config --global user.email email@gmail.com
+$ git clone git@github....
+$ git add .
+$ git push origin main
