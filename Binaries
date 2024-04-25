@@ -1,0 +1,21 @@
+#Directions for creating Binaries with bash & python scripts
+
+# When scripts are compiled as binaries they run faster, and their code is secure though uneditable
+
+##Bash Binaries
+# This is a very short process, binary file will be in same directory as original
+
+$ shc -f script_name -o binary_script_name -x
+
+
+##Python Binaries
+# These can take longer to compile.
+
+###Option 1 pyinstaller:
+$ pip install pyinstaller
+$ pyinstaller --onefile script_name
+
+
+###Option 2 nuitka:
+$ pip install nuitka
+$ python -m nuitka --onefile --standalone script_name
