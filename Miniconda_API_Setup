@@ -1,0 +1,21 @@
+##Miniconda is great for managing Python Environments within your Linux CLI
+
+###Below are a few steps that enable an API to be automatically activated & deactivated in a conda env session.
+
+###This method is secure and convenient, removing the need to export your API key and have this information visible in your history files.
+
+
+
+# Make two folders per conda environment:
+# (make sure to replace your_env_name accordingly)
+mkdir -p /home/mvix/miniconda3/envs/your_env_name/etc/conda/activate.d
+mkdir -p /home/mvix/miniconda3/envs/your_env_name/etc/conda/deactivate.d
+
+# Set the API key
+# When using > this will enter the first API (as well as overwrite any existing), use >> to append that file.
+echo "export OPENAI_API_KEY='your_openai_api_key'" > /home/mvix/miniconda3/envs/your_env_name/etc/conda/activate.d/env_vars.sh
+echo "export ANOTHER_API_KEY='your_other_api_key'" >> /home/mvix/miniconda3/envs/your_env_name/etc/conda/activate.d/env_vars.sh
+
+# The following will deactivate your API's everytime you exit your conda session
+echo "unset OPENAI_API_KEY" > /home/mvix/miniconda3/envs/your_env_name/etc/conda/deactivate.d/env_vars.sh
+echo "unset ANOTHER_API_KEY" >> /home/mvix/miniconda3/envs/your_env_name/etc/conda/deactivate.d/env_vars.sh
