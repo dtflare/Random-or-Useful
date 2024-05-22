@@ -9,7 +9,7 @@ $ shc -f script_name -o binary_script_name -x
 
 
 ##Python Binaries
-# These can take longer to compile.
+# These can take longer to compile - Nuitka is preferred.
 
 ###Option 1 pyinstaller:
 $ pip install pyinstaller
