@@ -1,0 +1,36 @@
+Use below code as a tool in linux terminal to decode or encode files, text, etc., in base64
+
+EXAMPLE USAGE:
+Encode:
+encode sample.txt > encoded-sample.txt
+Decode:
+decode encoded-sample.txt
+
+
+Encode (code for bash file):
+#!/bin/bash
+
+
+if [ -f "$1" ]; then
+	base64 "$1"
+elif [ -n "$1" ]; then
+	echo -n "$1" | base64
+else
+    echo "that is a NOGO" >&2
+    exit 1
+fi
+
+Decode (code for bash file):
+#!/bin/bash
+
+# Check if the input is a file
+if [ -f "$1" ]; then
+    # Decode the Base64 contents of the file
+    base64 --decode "$1"
+elif [ -n "$1" ]; then
+    # Decode the provided Base64 string
+    echo -n "$1" | base64 --decode
+else
+    echo "No input provided" >&2
+    exit 1
+fi
