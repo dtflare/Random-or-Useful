@@ -1,0 +1,50 @@
+Use below in linux terminal to recieve a loopback feed every 15 minutes of all stocks currently on halted status in the NASDAQ market.
+Add to file in path, and chmod + x permissions, then enter the command from any folder and leave terminal running.
+
+
+
+#!/usr/bin/env python3
+import feedparser
+from bs4 import BeautifulSoup
+import time
+
+# URL of the Nasdaq trade halts RSS feed
+feed_url = "http://www.nasdaqtrader.com/rss.aspx?feed=tradehalts"
+
+# Function to extract relevant details from the HTML table in the description
+def extract_halt_details(description):
+    # Parse the HTML content
+    soup = BeautifulSoup(description, 'html.parser')
+    # Extract the table data
+    data = [td.get_text(strip=True) for td in soup.find_all('td')]
+    
+    # Extract and clean relevant fields
+    halt_date = data[0] if len(data) > 0 else "N/A"
+    halt_time = data[1] if len(data) > 1 else "N/A"
+    symbol = data[2] if len(data) > 2 else "N/A"
+    issue_name = data[3] if len(data) > 3 else "N/A"
+    market = data[4] if len(data) > 4 else "N/A"
+    reason_code = data[5] if len(data) > 5 else "N/A"
+    resumption_date = data[7] if len(data) > 7 else "N/A"
+    resumption_quote_time = data[8] if len(data) > 8 else "N/A"
+    resumption_trade_time = data[9] if len(data) > 9 else "N/A"
+
+    # Return the cleaned-up values
+    return halt_date, halt_time, symbol, issue_name, market, reason_code, resumption_date, resumption_quote_time, resumption_trade_time
+
+# Function to fetch and display halt data
+def fetch_trade_halts():
+    # Parse the RSS feed
+    feed = feedparser.parse(feed_url)
+
+    # Process each entry in the feed
+    for entry in feed.entries:
+        halt_date, halt_time, symbol, issue_name, market, reason_code, resumption_date, resumption_quote_time, resumption_trade_time = extract_halt_details(entry.description)
+
+        # Print only the relevant information
+        print(f"{halt_date}\t{halt_time}\t{symbol}\t{issue_name}\t{market}\t{reason_code}\t{resumption_date}\t{resumption_quote_time}\t{resumption_trade_time}")
+
+# Run the script every 15 minutes
+while True:
+    fetch_trade_halts()
+    time.sleep(900)  # Sleep for 15 minutes (900 seconds)
