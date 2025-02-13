@@ -1,0 +1,20 @@
+Atheros Chipset Driver Install for Linux
+
+Below is a current trusted source for downloading the Atheros drivers needed for 94271 wifi adapter with monitor mode capability.
+
+Before you install the firmware, grab the .deb file in /etc/apt/sources.list, run sha256sum against it, and check the SHA on Virus Total.
+
+
+https://gist.github.com/indeedhat/68c62e721f00ea0f29b87bcc81d747d4
+# Add this line in /etc/apt/sources.list
+# deb http://httpredir.debian.org/debian/ bullseye main contrib non-free
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 605C66F00D6C9793
+sudo apt-get update --allow-unauthenticated
+
+# this will produce an error... go with it
+sudo apt-get install firmware-atheros 
+sudo dpkg -i --force-overwrite /var/cache/apt/archives/firmware-atheros_20210315-3_all.deb
+sudo apt -f install
