@@ -2,7 +2,7 @@ Atheros Chipset Driver Install for Linux
 
 Below is a current trusted source for downloading the Atheros drivers needed for 94271 wifi adapter with monitor mode capability.
 
-Before you install the firmware, grab the .deb file in /etc/apt/sources.list, run sha256sum against it, and check the SHA on Virus Total.
+Before you install the firmware, grab the .deb file in /etc/apt/sources.list OR /var/cache/apt/archives, run sha256sum against it, and check the SHA on Virus Total.
 
 
 https://gist.github.com/indeedhat/68c62e721f00ea0f29b87bcc81d747d4
