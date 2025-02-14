@@ -1,0 +1,81 @@
+The two scripts below will transfer a YouTube video into an MP4 and then transpose it into a text file.
+
+Recommend using conda env. Make sure to install yt-dlp.
+
+
+SCRIPT 1:
+
+#!/usr/bin/env python
+import yt_dlp
+import sys
+
+#most recent version of yt_dwnld
+#this downloads audio file from youtube, has sys function
+# pip install yt_dlp
+# pip install git+https://github.com/openai/whisper.git - not necessary for this script
+#below updates the yt-dlp bc youtube tries to block it:
+#pip install -U yt-dlp    
+#when using make sure to use quotes around the url: ./yt_dwnld2 "url.com" output.txt
+
+
+if len(sys.argv) < 2:
+        print("./yt_dwnld2 url.com output-file")
+        sys.exit(1)
+input_url = sys.argv[1]
+output_file = sys.argv[2] if len(sys.argv) > 2 else "youtube_download.mp4" #option for no output-file
+
+def download_mp4_from_youtube(url, filename):
+    # Set the options for the download
+#    filename = {output-file}
+    ydl_opts = {
+        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]',
+        'outtmpl': filename,
+        'quiet': True,
+    }
+
+    # Download the video file
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        result = ydl.extract_info(url, download=True)
+        if result:
+            print("Download is go time.")
+        else:
+            print("Download FAILURE.")
+
+#url = {input-url}
+download_mp4_from_youtube(input_url, output_file)
+
+_____________________________________________________________________________
+SCRIPT 2:
+
+#!/usr/bin/env python
+
+import sys
+import whisper
+
+# Check if correct number of arguments is provided
+if len(sys.argv) < 3:
+    print("Usage: ./whisper_trans.py <input_mp4> <output_txt>")
+    sys.exit(1)
+
+# Parse arguments
+input_mp4 = sys.argv[1]
+output_txt = sys.argv[2]
+
+# Load the Whisper model
+model = whisper.load_model("base")
+
+# Transcribe the audio from the MP4 file
+try:
+    print(f"Transcribing {input_mp4}...")
+    result = model.transcribe(input_mp4)
+    print("Transcription complete!")
+
+    # Save the transcription to the output file
+    with open(output_txt, 'w') as file:
+        file.write(result['text'])
+
+    print(f"Transcription saved to {output_txt}")
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+
